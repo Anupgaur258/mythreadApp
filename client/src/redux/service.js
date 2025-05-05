@@ -6,7 +6,10 @@ import {
     addUser,
     deleteThePost,
 } from "./slice";
-const SERVER_URL = "http://localhost:5000";
+
+// ✅ Use environment variable here
+const SERVER_URL =
+    import.meta.env.VITE_SERVER_URL;
 
 export const serviceApi = createApi({
     reducerPath: "serviceApi",
@@ -91,7 +94,6 @@ export const serviceApi = createApi({
             }),
             invalidatesTags: ["Me"],
         }),
-
         addPost: builder.mutation({
             query: (data) => ({
                 url: `post`,
@@ -163,7 +165,6 @@ export const serviceApi = createApi({
             }),
             invalidatesTags: ["User"],
         }),
-
         addComment: builder.mutation({
             query: ({ id, ...data }) => ({
                 url: `comment/${id}`,
